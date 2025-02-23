@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const name = decodeURIComponent(urlParams.get("name"));
-    const age = parseInt(urlParams.get("age"));
-    const message = decodeURIComponent(urlParams.get("message"));
-    const photoURL = decodeURIComponent(urlParams.get("photoURL"));
+    const name = decodeURIComponent(urlParams.get("name") || "Friend");
+    const age = parseInt(urlParams.get("age")) || 1;
+    const message = decodeURIComponent(urlParams.get("message") || "Happy Birthday!");
+    const photoURL = urlParams.get("photoURL");
 
     document.getElementById("ecardTitle").textContent = `Happy ${age}th Birthday, ${name}!`;
     document.getElementById("birthdayMessage").textContent = message;
@@ -15,26 +15,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const cakeContainer = document.getElementById("cakeContainer");
+    let candlesBlownOut = 0;
+
     for (let i = 0; i < age; i++) {
         let candle = document.createElement("div");
         candle.classList.add("candle");
-        candle.textContent = "🕯️";
-        candle.addEventListener("click", function () {
-            candle.classList.add("blown-out");
-            candle.textContent = "🕯️✨";
-            checkAllCandlesBlown();
-        });
-        cakeContainer.appendChild(candle);
-    }
+        candle.innerHTML = "🕯️";
+        candle.dataset.index = i;  
 
-    function checkAllCandlesBlown() {
-        let candles = document.querySelectorAll(".candle");
-        let allBlown = [...candles].every(candle => candle.classList.contains("blown-out"));
-        if (allBlown) {
-            setTimeout(() => {
-                document.getElementById("giftPopup").classList.remove("hidden");
-            }, 1000);
-        }
+        candle.addEventListener("click", function () {
+            if (!candle.classList.contains("blown-out")) {
+                candle.classList.add("blown-out");
+                candle.innerHTML = "🕯️✨";
+                candlesBlownOut++;
+
+                if (candlesBlownOut === age) {
+                    setTimeout(() => {
+                        document.getElementById("giftPopup").classList.remove("hidden");
+                    }, 1000);
+                }
+            }
+        });
+
+        cakeContainer.appendChild(candle);
     }
 
     document.getElementById("giftBox").addEventListener("click", function () {
