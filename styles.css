@@ -1,0 +1,5 @@
+body { font-family: Arial, sans-serif; text-align: center; }
+.container, .ecard-container { max-width: 400px; margin: auto; padding: 20px; }
+.candle { display: inline-block; font-size: 30px; cursor: pointer; }
+.hidden { display: none; }
+#giftBox { cursor: pointer; font-size: 30px; }
