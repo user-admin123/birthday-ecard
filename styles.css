@@ -1,5 +1,7 @@
-body { font-family: Arial, sans-serif; text-align: center; }
-.container, .ecard-container { max-width: 400px; margin: auto; padding: 20px; }
-.candle { display: inline-block; font-size: 30px; cursor: pointer; }
+body { font-family: Arial, sans-serif; text-align: center; background: linear-gradient(to right, #ff9966, #ff5e62); color: white; }
+.container, .ecard-container { max-width: 400px; margin: auto; padding: 20px; background: rgba(255,255,255,0.8); border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+.input-group { margin-bottom: 10px; }
+.candle { display: inline-block; font-size: 30px; cursor: pointer; animation: glow 1s infinite alternate; }
+@keyframes glow { from { text-shadow: 0 0 10px yellow; } to { text-shadow: 0 0 20px red; } }
 .hidden { display: none; }
-#giftBox { cursor: pointer; font-size: 30px; }
+#giftBox { cursor: pointer; font-size: 30px; background: gold; padding: 10px; border-radius: 5px; }
