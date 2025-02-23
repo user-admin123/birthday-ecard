@@ -1,34 +1,45 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get("name");
-    const age = params.get("age");
-    const message = params.get("message");
-    const photoURL = params.get("photoURL");
-    
-    document.getElementById("ecardTitle").textContent = `Happy Birthday, ${name}!`;
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = decodeURIComponent(urlParams.get("name"));
+    const age = parseInt(urlParams.get("age"));
+    const message = decodeURIComponent(urlParams.get("message"));
+    const photoURL = decodeURIComponent(urlParams.get("photoURL"));
+
+    document.getElementById("ecardTitle").textContent = `Happy ${age}th Birthday, ${name}!`;
     document.getElementById("birthdayMessage").textContent = message;
-    
+
     if (photoURL) {
-        document.getElementById("birthdayPhoto").src = photoURL;
-        document.getElementById("birthdayPhoto").classList.remove("hidden");
+        const img = document.getElementById("birthdayPhoto");
+        img.src = photoURL;
+        img.classList.remove("hidden");
     }
-    
+
     const cakeContainer = document.getElementById("cakeContainer");
     for (let i = 0; i < age; i++) {
-        const candle = document.createElement("div");
-        candle.className = "candle";
-        candle.innerHTML = "🕯";
+        let candle = document.createElement("div");
+        candle.classList.add("candle");
+        candle.textContent = "🕯️";
         candle.addEventListener("click", function () {
-            candle.innerHTML = "🔥";
             candle.classList.add("blown-out");
-            if (document.querySelectorAll(".candle:not(.blown-out)").length === 0) {
-                document.getElementById("giftBox").classList.remove("hidden");
-            }
+            candle.textContent = "🕯️✨";
+            checkAllCandlesBlown();
         });
         cakeContainer.appendChild(candle);
     }
+
+    function checkAllCandlesBlown() {
+        let candles = document.querySelectorAll(".candle");
+        let allBlown = [...candles].every(candle => candle.classList.contains("blown-out"));
+        if (allBlown) {
+            setTimeout(() => {
+                document.getElementById("giftPopup").classList.remove("hidden");
+            }, 1000);
+        }
+    }
+
     document.getElementById("giftBox").addEventListener("click", function () {
-        document.getElementById("birthdayMessage").classList.remove("hidden");
+        document.getElementById("giftPopup").classList.add("hidden");
+        document.getElementById("finalPopup").classList.remove("hidden");
         document.getElementById("birthdayMusic").play();
     });
 });
