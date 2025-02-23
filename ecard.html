@@ -10,10 +10,20 @@
     <div class="ecard-container">
         <h2 id="ecardTitle"></h2>
         <div id="cakeContainer"></div>
-        <div id="giftBox" class="hidden">🎁 Tap to Open</div>
-        <p id="birthdayMessage" class="hidden"></p>
-        <img id="birthdayPhoto" class="hidden" />
-        <audio id="birthdayMusic" src="happy-birthday.mp3" loop></audio>
+    </div>
+    <div id="giftPopup" class="popup hidden">
+        <div class="popup-content">
+            <p>Tap to Open Gift</p>
+            <div id="giftBox">🎁</div>
+        </div>
+    </div>
+    <div id="finalPopup" class="popup hidden">
+        <div class="popup-content">
+            <h2>Happy Birthday!</h2>
+            <p id="birthdayMessage"></p>
+            <img id="birthdayPhoto" class="hidden" />
+            <audio id="birthdayMusic" src="happy-birthday.mp3" loop></audio>
+        </div>
     </div>
     <script src="ecard.js"></script>
 </body>
