@@ -1,176 +1,85 @@
-/* Global Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    color: #fff;
-    margin: 0;
-    padding: 0;
+body { 
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    background: linear-gradient(to right, orange, pink); 
+    color: white; 
 }
 
-/* Form Container */
-.container {
-    max-width: 450px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 15px;
-    margin: 50px auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+.container { 
+    max-width: 400px; 
+    margin: auto; 
+    padding: 20px; 
+    background: white; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); 
+    color: black; 
 }
 
-h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
+.input-group { 
+    margin-bottom: 15px; 
+    text-align: left; 
 }
 
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
+.input-group label { 
+    display: block; 
+    font-weight: bold; 
+    margin-bottom: 5px; 
 }
 
-.input-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+.input-group input, .input-group textarea { 
+    width: 100%; 
+    padding: 8px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
 }
 
-.input-group input, .input-group textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    outline: none;
+button { 
+    background: orange; 
+    color: white; 
+    padding: 10px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    width: 100%; 
 }
 
-.input-group input::placeholder, .input-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+button:hover { 
+    background: darkorange; 
 }
 
-/* Button Styling */
-button {
-    background: #ff6b81;
-    color: white;
-    padding: 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    width: 100%;
-    font-size: 18px;
-    transition: 0.3s;
+.hidden { 
+    display: none; 
 }
 
-button:hover {
-    background: #ff4757;
+.popup { 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: white; 
+    color: black; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    text-align: center; 
 }
 
-/* Popup Modal */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    color: black;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    text-align: center;
-    display: none;
+.candle { 
+    display: inline-block; 
+    font-size: 30px; 
+    margin: 5px; 
+    cursor: pointer; 
 }
 
-.popup.show {
-    display: block;
-    animation: fadeIn 0.5s ease-in-out;
+.blown-out { 
+    opacity: 0.5; 
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -60%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-/* Candle Effects */
-.candle {
-    display: inline-block;
-    font-size: 30px;
-    margin: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    animation: flicker 1s infinite alternate;
-}
-
-@keyframes flicker {
-    0% { text-shadow: 0 0 5px yellow; }
-    100% { text-shadow: 0 0 15px orange; }
-}
-
-.blown-out {
-    opacity: 0.5;
-    text-shadow: none;
-}
-
-/* Gift Box Styling */
-#giftBox {
-    font-size: 24px;
-    cursor: pointer;
-    background: gold;
-    padding: 15px;
-    display: inline-block;
-    border-radius: 10px;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* Birthday Message Popup */
-#finalPopup {
-    background: #fff;
-    color: black;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
-    animation: slideIn 0.5s ease-in-out;
-}
-
-@keyframes slideIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-#finalPopup h2 {
-    font-size: 28px;
-    color: #ff4757;
-}
-
-#finalPopup p {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-#birthdayPhoto {
-    max-width: 100px;
-    border-radius: 50%;
-    margin-top: 10px;
-}
-
-/* Responsive Design */
-@media (max-width: 500px) {
-    .container {
-        max-width: 90%;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    button {
-        font-size: 16px;
-    }
+#giftBox { 
+    font-size: 24px; 
+    cursor: pointer; 
+    background: yellow; 
+    padding: 10px; 
+    display: inline-block; 
+    border-radius: 5px; 
 }
