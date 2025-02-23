@@ -8,17 +8,13 @@
 </head>
 <body>
     <div class="ecard-container">
-        <h2 id="birthdayName"></h2>
-        <div class="cake">
-            <div id="candlesContainer"></div>
-        </div>
+        <h2 id="ecardTitle"></h2>
+        <div id="cakeContainer"></div>
         <div id="giftBox" class="hidden">🎁 Tap to Open</div>
-        <div id="messageContainer" class="hidden"></div>
-        <img id="photoContainer" class="hidden" alt="Birthday Photo">
-        <audio id="bgMusic" loop>
-            <source src="assets/happy_birthday.mp3" type="audio/mpeg">
-        </audio>
+        <p id="birthdayMessage" class="hidden"></p>
+        <img id="birthdayPhoto" class="hidden" />
+        <audio id="birthdayMusic" src="happy-birthday.mp3" loop></audio>
     </div>
-    <script src="script.js"></script>
+    <script src="ecard.js"></script>
 </body>
 </html>
