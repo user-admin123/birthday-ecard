@@ -2,16 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("ecardForm");
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-        const name = document.getElementById("name").value;
-        const age = document.getElementById("age").value;
-        const message = document.getElementById("message").value;
+        const name = encodeURIComponent(document.getElementById("name").value);
+        const age = encodeURIComponent(document.getElementById("age").value);
+        const message = encodeURIComponent(document.getElementById("message").value);
         const photoFile = document.getElementById("photo").files[0];
         let photoURL = "";
         
         if (photoFile) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                photoURL = e.target.result;
+                photoURL = encodeURIComponent(e.target.result);
                 generateShortLink(name, age, message, photoURL);
             };
             reader.readAsDataURL(photoFile);
@@ -22,8 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function generateShortLink(name, age, message, photoURL) {
-    const params = new URLSearchParams({ name, age, message, photoURL });
-    const link = `ecard.html?${params.toString()}`;
+    const link = `ecard.html?name=${name}&age=${age}&message=${message}&photoURL=${photoURL}`;
     document.getElementById("shareLink").value = link;
     document.getElementById("shareLinkContainer").classList.remove("hidden");
 }
@@ -31,6 +30,7 @@ function generateShortLink(name, age, message, photoURL) {
 document.getElementById("copyButton").addEventListener("click", function () {
     const linkField = document.getElementById("shareLink");
     linkField.select();
-    document.execCommand("copy");
-    document.getElementById("copyMessage").classList.remove("hidden");
+    navigator.clipboard.writeText(linkField.value).then(() => {
+        document.getElementById("copyMessage").classList.remove("hidden");
+    });
 });
