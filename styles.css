@@ -6,6 +6,7 @@ body { font-family: Arial, sans-serif; text-align: center; background: linear-gr
 button { background: orange; color: white; padding: 10px; border: none; cursor: pointer; border-radius: 5px; width: 100%; }
 button:hover { background: darkorange; }
 .hidden { display: none; }
+.popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.3); text-align: center; }
 .candle { display: inline-block; font-size: 30px; margin: 5px; cursor: pointer; }
 .blown-out { opacity: 0.5; }
 #giftBox { font-size: 24px; cursor: pointer; background: yellow; padding: 10px; display: inline-block; border-radius: 5px; }
