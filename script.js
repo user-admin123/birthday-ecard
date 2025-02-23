@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function generateShortLink(name, age, message, photoURL) {
-    const link = `ecard.html?name=${name}&age=${age}&message=${message}&photoURL=${photoURL}`;
+    const link = `https://birthday-ecard-maker.netlify.app/ecard.html?name=${name}&age=${age}&message=${message}&photoURL=${photoURL}`;
     document.getElementById("shareLink").value = link;
-    document.getElementById("shareLinkContainer").classList.remove("hidden");
+    document.getElementById("popup").classList.remove("hidden");
 }
 
 document.getElementById("copyButton").addEventListener("click", function () {
@@ -32,5 +32,8 @@ document.getElementById("copyButton").addEventListener("click", function () {
     linkField.select();
     navigator.clipboard.writeText(linkField.value).then(() => {
         document.getElementById("copyMessage").classList.remove("hidden");
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2000);
     });
 });
