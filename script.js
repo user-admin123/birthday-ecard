@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function redirectToECard(name, age, message, photoURL) {
     const params = new URLSearchParams({ name, age, message, photoURL });
-    window.location.href = `ecard.html?${params.toString()}`;
+    const link = `${window.location.origin}/ecard.html?${params.toString()}`;
+    alert(`Share this link: ${link}`);
+    window.location.href = link;
 }
 
 function loadECard() {
