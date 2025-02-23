@@ -12,58 +12,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     photoURL = e.target.result;
-                    redirectToECard(name, age, message, photoURL);
+                    generateShortLink(name, age, message, photoURL);
                 };
                 reader.readAsDataURL(photoFile);
             } else {
-                redirectToECard(name, age, message, photoURL);
+                generateShortLink(name, age, message, photoURL);
             }
         });
-    } else {
-        loadECard();
     }
 });
 
-function redirectToECard(name, age, message, photoURL) {
+function generateShortLink(name, age, message, photoURL) {
     const params = new URLSearchParams({ name, age, message, photoURL });
     const link = `${window.location.origin}/ecard.html?${params.toString()}`;
-    alert(`Share this link: ${link}`);
-    window.location.href = link;
+    document.getElementById("shareLink").value = link;
+    document.getElementById("shareLinkContainer").classList.remove("hidden");
 }
 
-function loadECard() {
-    const params = new URLSearchParams(window.location.search);
-    document.getElementById("birthdayName").innerText = `Happy Birthday, ${params.get("name")}!`;
-    document.getElementById("messageContainer").innerText = params.get("message");
-    const photoContainer = document.getElementById("photoContainer");
-    
-    if (params.get("photoURL")) {
-        photoContainer.src = params.get("photoURL");
-        photoContainer.classList.remove("hidden");
-    }
-
-    const age = parseInt(params.get("age"));
-    const candlesContainer = document.getElementById("candlesContainer");
-    for (let i = 0; i < age; i++) {
-        let candle = document.createElement("div");
-        candle.classList.add("candle");
-        candle.innerText = "🕯️";
-        candle.addEventListener("click", function () {
-            candle.innerText = "🔥";
-            candle.classList.add("blown");
-            checkCandles();
-        });
-        candlesContainer.appendChild(candle);
-    }
-}
-
-function checkCandles() {
-    if (document.querySelectorAll(".candle:not(.blown)").length === 0) {
-        document.getElementById("giftBox").classList.remove("hidden");
-        document.getElementById("giftBox").addEventListener("click", function () {
-            document.getElementById("giftBox").classList.add("hidden");
-            document.getElementById("messageContainer").classList.remove("hidden");
-            document.getElementById("bgMusic").play();
-        });
-    }
+function copyLink() {
+    const linkField = document.getElementById("shareLink");
+    linkField.select();
+    document.execCommand("copy");
+    document.getElementById("copyMessage").classList.remove("hidden");
 }
